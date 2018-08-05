@@ -45,13 +45,14 @@ public class UiClass extends Application {
 		btn.setOnAction((event)->{
 			bean.setName(websiteName.getText());
 			try {
-				list.put("ipAddress",detailer.details(bean.getIpAddress(),"ipAddress"));
-				list.put("protocol",detailer.details(bean.getProtocol(),"protocol"));
-				list.put("host",detailer.details(bean.getHost(),"host"));
-				list.put("port",detailer.details(bean.getPort(),"port"));
-				list.put("query",detailer.details(bean.getQuery(),"query"));
-				list.put("reference",detailer.details(bean.getReference(),"reference"));
+				list.put("ipAddress",detailer.details(bean.getName(),"ipAddress"));
+				list.put("protocol",detailer.details(bean.getName(),"protocol"));
+				list.put("host",detailer.details(bean.getName(),"host"));
+				list.put("port",detailer.details(bean.getName(),"port"));
+				list.put("query",detailer.details(bean.getName(),"query"));
+				list.put("reference",detailer.details(bean.getName(),"reference"));
 				bean.setList(list);
+				System.out.println(list);
 				excelManager.generateExcel(list);
 			} catch ( IOException e) {e.printStackTrace();}
 			

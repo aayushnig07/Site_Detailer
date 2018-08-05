@@ -25,28 +25,28 @@ public class ExcelManager {
 		Workbook workbook=new XSSFWorkbook();
 		Sheet sheet = workbook.createSheet("WebSite Details");
 
-		Font headerFont=workbook.createFont();
-
-		headerFont.setBold(true);
-		headerFont.setColor(IndexedColors.RED.getIndex());
-		headerFont.setFontHeight((short)13);
-
-		CellStyle headerCellStyle=workbook.createCellStyle();
-		headerCellStyle.setFont(headerFont);
+//		Font headerFont=workbook.createFont();
+//
+//		headerFont.setBold(true);
+//		headerFont.setColor(IndexedColors.RED.getIndex());
+//		headerFont.setFontHeight((short)13);
+//
+//		CellStyle headerCellStyle=workbook.createCellStyle();
+//		headerCellStyle.setFont(headerFont);
 
 		Row headerRow=sheet.createRow(0);
 
 		for(int i=0;i<list.size();i++) {
 			Cell cell=headerRow.createCell(i);
 			cell.setCellValue(list.keySet().toArray()[i].toString());
-			cell.setCellStyle(headerCellStyle);
+//			cell.setCellStyle(headerCellStyle);
 		}
 
 		int rowNum=1;
-
+		Row row=sheet.createRow(rowNum);
 		for(int i=0;i<list.size();i++) {
-			Row row=sheet.createRow(rowNum++);
-			row.createCell(i).setCellValue(list.get(i));
+			System.out.println(list.get(list.keySet().toArray()[i].toString()));
+			row.createCell(i).setCellValue(list.get(list.keySet().toArray()[i].toString()));
 			sheet.autoSizeColumn(i);
 		}
 		
@@ -55,6 +55,7 @@ public class ExcelManager {
 		workbook.write(fileOut);
 
 		fileOut.close();
+		workbook.close();
 
 	}
 }
